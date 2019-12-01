@@ -32,9 +32,9 @@ public:
 private:
     class Node {
     public:
-        explicit Node(Account Account)
+        explicit Node(Account *Account)
                 : Account{Account}, Right{nullptr}, Left{nullptr} {};
-        Account Account;
+        Account *Account;
         Node *Right;
         Node *Left;
     };

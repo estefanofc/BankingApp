@@ -10,24 +10,24 @@ AccountTree::~AccountTree() = default;
 // Insert new account
 bool AccountTree::insert(Account *Account) {
     if (isEmpty()){
-        Root = new Account(Account);
+        Root = new Node(Account);
         return true;
     }
     Node * Curr = Root;
     while (Curr != nullptr){
-        if (Account->getAccountNum() == Curr->Account.getAccountNum()){
+        if (Account->getAccountNum() == Curr->Account->getAccountNum()){
             return false;
         }
-        if (Account->getAccountNum() > Curr->Account.getAccountNum()){
+        if (Account->getAccountNum() > Curr->Account->getAccountNum()){
             if (Curr->Right == nullptr){
-                Curr->Right = new *Account(Account);
+                Curr->Right = new Node(Account);
                 return true;
             }
             Curr = Curr->Right;
         }
-        if (Account->getAccountNum() < Curr->Account.getAccountNum()){
+        if (Account->getAccountNum() < Curr->Account->getAccountNum()){
             if (Curr->Left == nullptr){
-                Curr->Left = new *Account(Account);
+                Curr->Left = new Node(Account);
                 return true;
             }
             Curr = Curr->Left;
@@ -44,14 +44,14 @@ bool AccountTree::retrieve(const int &AccountNumber, Account *&Account) const {
     }
     Node *Curr = Root;
     while (Curr != nullptr){
-        if (AccountNumber == Curr->Account.getAccountNum()){
-            *Account = Curr->Account;
+        if (AccountNumber == Curr->Account->getAccountNum()){
+            Account = Curr->Account;
             return true;
         }
-        if (AccountNumber > Curr->Account.getAccountNum()){
+        if (AccountNumber > Curr->Account->getAccountNum()){
             Curr = Curr->Right;
         }
-        if (AccountNumber < Curr->Account.getAccountNum()){
+        if (AccountNumber < Curr->Account->getAccountNum()){
             Curr = Curr->Left;
         }
     }
