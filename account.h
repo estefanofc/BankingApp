@@ -1,4 +1,4 @@
-
+// Created by Estefano Felipe and Jonathan Young on 11-29-19
 #ifndef ASS5_ACCOUNT_H
 #define ASS5_ACCOUNT_H
 
@@ -14,9 +14,11 @@ public:
     //s
     int withdraw(int Amount, int Fund);
 
-    void displayAllFunds();
+    void displayAllFunds() const;
 
-    void displayFund(int Fund);
+    void displayFund(int Fund) const;
+
+    int getAccountNum() const;
 
 private:
     int id;

@@ -1,4 +1,4 @@
-
+// Created by Estefano Felipe and Jonathan Young on 11-29-19
 #ifndef ASS5_ACCOUNTTREE_H
 #define ASS5_ACCOUNTTREE_H
 
@@ -32,14 +32,16 @@ public:
 private:
     class Node {
     public:
-        explicit Node(Account *Account)
+        explicit Node(Account Account)
                 : Account{Account}, Right{nullptr}, Left{nullptr} {};
-        Account *Account;
+        Account Account;
         Node *Right;
         Node *Left;
     };
 
     Node *Root;
+
+    bool recursiveRemove(Node *Curr);
 };
 
 #endif // ASS5_ACCOUNTTREE_H
