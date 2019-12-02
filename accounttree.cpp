@@ -1,11 +1,13 @@
-// Created by Estefano Felipe and Jonathan Young on 11-29-19
+// Created by Estefano Felipa and Jonathan Young on 11-29-19
 #include "accounttree.h"
 
 // Default constructor for account tree
 AccountTree::AccountTree() = default;
 
 // Delete all nodes in BST
-AccountTree::~AccountTree() = default;
+AccountTree::~AccountTree()  {
+    clear();
+}
 
 // Insert new account
 bool AccountTree::insert(Account *Account) {
@@ -67,7 +69,8 @@ void AccountTree::display() const {
 void AccountTree::display(Node *Curr) const {
     if (Root != nullptr){
         display(Curr->Left);
-        cout << *Curr->Account->displayAllFunds() << endl;
+        display(Curr->Right);
+        cout << Curr->Account << endl;
     }
 }
 

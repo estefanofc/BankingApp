@@ -1,4 +1,4 @@
-// Created by Estefano Felipe and Jonathan Young on 11-29-19
+// Created by Estefano Felipa and Jonathan Young on 11-29-19
 #ifndef ASS5_ACCOUNT_H
 #define ASS5_ACCOUNT_H
 
@@ -26,7 +26,7 @@ public:
     // Account constructor, all sub account funds initialized to 0 balance
     Account(string LastName, string FirstName, int Id);
 
-    // Account deconstructor
+    // Account destructor
     ~Account();
 
     // boolean deposit function, returns true if account exists, false otherwise
@@ -48,7 +48,7 @@ public:
     void displayAllFunds() const;
 
     // displays balance for specified sub-account
-    int displayFund(int Fund) const;
+    void displayFund(int Fund) const;
 
     // helper method to retrieve account number
     int getAccountNum() const;
@@ -66,7 +66,7 @@ private:
     string LastName;
     string FirstName;
     int Funds[ACCOUNT_TYPES];
-    string *History;
+    string History[ACCOUNT_TYPES];
 };
 
 #endif // ASS5_ACCOUNT_H
