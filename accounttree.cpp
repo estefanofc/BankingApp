@@ -67,35 +67,36 @@ void AccountTree::clear() {
     if (isEmpty()){
         return;
     }
+    recursiveRemove(Root);
     if (Root->Right == nullptr && Root->Left == nullptr){
         delete Root;
     }
-    Node *Curr = Root;
 
-    while (!isEmpty()){
-        while (Curr->Right != nullptr || Curr->Left != nullptr){
-            if (Curr->Left != nullptr && Curr->Right != nullptr){
-                Temp = Curr;
-            }
-            if (Curr->Left != nullptr){
-                Curr = Curr->Left;
-            }
-            else if (Curr->Right != nullptr) {
-                Curr = Curr->Right;
-            }
-        }
-        Temp = Curr;
-        Curr = Curr->
-    }
+//    while (!isEmpty()){
+//        while (Curr->Right != nullptr || Curr->Left != nullptr){
+//            if (Curr->Left != nullptr && Curr->Right != nullptr){
+//                Temp = Curr;
+//            }
+//            if (Curr->Left != nullptr){
+//                Curr = Curr->Left;
+//            }
+//            else if (Curr->Right != nullptr) {
+//                Curr = Curr->Right;
+//            }
+//        }
+//        Temp = Curr;
+//        Curr = Curr->
+//    }
 
 }
 
-bool AccountTree::recursiveRemove(Node *Curr){
-    Node *Temp;
-    while (Curr != nullptr){
-        Curr = Curr->Left;
-        while (Curr)
+void AccountTree::recursiveRemove(Node *Curr){
+    if (Curr == nullptr){
+        return;
     }
+    recursiveRemove(Curr->Left);
+    recursiveRemove(Curr->Right);
+    free(Curr);
 }
 
 // check if tree is empty
