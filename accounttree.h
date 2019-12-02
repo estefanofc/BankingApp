@@ -42,6 +42,8 @@ private:
     Node *Root;
 
     void recursiveRemove(Node *Curr);
+
+    void display(Node *Root) const;
 };
 
 #endif // ASS5_ACCOUNTTREE_H

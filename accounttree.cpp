@@ -60,7 +60,16 @@ bool AccountTree::retrieve(const int &AccountNumber, Account *&Account) const {
 }
 
 // Display information on all accounts
-void AccountTree::display() const {}
+void AccountTree::display() const {
+    display(Root);
+}
+
+void AccountTree::display(Node *Curr) const {
+    if (Root != nullptr){
+        display(Curr->Left);
+        cout << *Curr->Account->displayAllFunds() << endl;
+    }
+}
 
 // delete all information in AccountTree
 void AccountTree::clear() {

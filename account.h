@@ -5,8 +5,22 @@
 #include <string>
 
 using namespace std;
-
+// constant variable that manages sub accounts as index size variable
+const int ACCOUNT_TYPES = 10;
+const string FUNDS[10] = {
+        "Money Market",
+        "Prime Money Market",
+        "Long-Term Bond",
+        "Short-Term Bond",
+        "500 Index Fund",
+        "Capital Value Fund",
+        "Growth Equity Fund",
+        "Growth Index Fund",
+        "Value Fund",
+        "Value Stock Index"
+};
 class Account {
+    friend ostream& operator<<(ostream& Os, const Account &Account);
 public:
 
     // Account constructor, all sub account funds initialized to 0 balance
@@ -34,13 +48,18 @@ public:
     void displayAllFunds() const;
 
     // displays balance for specified sub-account
-    void displayFund(int Fund) const;
+    int displayFund(int Fund) const;
 
     // helper method to retrieve account number
     int getAccountNum() const;
 
-    // constant variable that manages sub accounts as index size variable
-    static const int ACCOUNT_TYPES = 10;
+    // helper method to retrieve account holders last name
+    string getLastName() const;
+
+    // helper method to retrieve account holders first name
+    string getFirstName() const;
+
+
 
 private:
     int Id;
