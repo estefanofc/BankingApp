@@ -1,6 +1,5 @@
 // Created by Estefano Felipe and Jonathan Young on 11-29-19
 #include "accounttree.h"
-// empty
 
 AccountTree::AccountTree() = default;
 
@@ -65,10 +64,13 @@ void AccountTree::display() const {}
 // delete all information in AccountTree
 void AccountTree::clear() {
     if (isEmpty()){
+        cout << "There are no Accounts present to delete" << endl;
         return;
     }
     recursiveRemove(Root);
     if (Root->Right == nullptr && Root->Left == nullptr){
+        cout << "Deleting Account number: " << Root->Account->getAccountNum() <<
+             endl;
         delete Root;
     }
 
@@ -96,6 +98,8 @@ void AccountTree::recursiveRemove(Node *Curr){
     }
     recursiveRemove(Curr->Left);
     recursiveRemove(Curr->Right);
+    cout << "Deleting Account number: " << Curr->Account->getAccountNum() <<
+    endl;
     free(Curr);
 }
 
