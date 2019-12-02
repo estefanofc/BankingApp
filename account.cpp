@@ -7,7 +7,6 @@ Account::Account(string LastName, string FirstName, int Id) :
     for (int I = 0; I < ACCOUNT_TYPES; ++I) {
         Funds[I] = 0;
     }
-    cout << "SS" << endl;
 }
 
 Account::~Account() {
@@ -64,8 +63,8 @@ string Account::getFirstName() const {
 ostream& operator<<(ostream &Os, const Account &Account){
     Os << Account.getLastName() << " " << Account.getFirstName() << " Account "
             "ID: " << Account.getAccountNum() << endl;
-//    for (int I = 0; I < ACCOUNT_TYPES; I++){
-//        Os << "\t" << FUNDS[I] << ": $" << Account.displayFund(I) << endl;
-//    }
+    for (int I = 0; I < ACCOUNT_TYPES; I++){
+        Os << "\t" << FUNDS[I] << ": $" << Account.Funds[I] << endl;
+    }
     return Os;
 }

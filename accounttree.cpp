@@ -67,10 +67,10 @@ void AccountTree::display() const {
 }
 
 void AccountTree::display(Node *Curr) const {
-    if (Root != nullptr){
+    if (Curr != nullptr){
         display(Curr->Left);
         display(Curr->Right);
-        cout << Curr->Account << endl;
+        cout << *(Curr->Account) << endl;
     }
 }
 

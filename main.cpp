@@ -20,6 +20,7 @@ int main(int Argc, char *Argv[]) {
         Account* hi = new Account("hola", "dd", i);
         tree.insert(hi);
     }
+     tree.display();
 
     return 0;
 }
