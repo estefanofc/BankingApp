@@ -1,6 +1,7 @@
 // Created by Estefano Felipe and Jonathan Young on 11-29-19
 #include "accounttree.h"
 
+// Default constructor for account tree
 AccountTree::AccountTree() = default;
 
 // Delete all nodes in BST

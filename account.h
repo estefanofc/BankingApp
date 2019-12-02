@@ -10,7 +10,8 @@ class Account {
 public:
 
     // Account constructor, all sub account funds initialized to 0 balance
-    Account(string LastName, string FirstName, int Id);
+    Account(string LastName, string FirstName, int Id) : LastName{LastName},
+    FirstName{FirstName}, Id{Id} {};
 
     // Account deconstructor
     ~Account();
@@ -45,9 +46,9 @@ public:
 private:
     int Id;
     string LastName;
-    string firstName;
+    string FirstName;
     int Funds[ACCOUNT_TYPES];
-    string *history;
+    string *History;
 };
 
 #endif // ASS5_ACCOUNT_H
