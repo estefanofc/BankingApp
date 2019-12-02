@@ -2,7 +2,6 @@
 #include "bank.h"
 
 
-
 Bank::Bank() = default;
 
 Bank::~Bank() = default;

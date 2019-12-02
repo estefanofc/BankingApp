@@ -10,8 +10,7 @@ class Account {
 public:
 
     // Account constructor, all sub account funds initialized to 0 balance
-    Account(string LastName, string FirstName, int Id) : LastName{LastName},
-    FirstName{FirstName}, Id{Id} {};
+    Account(string LastName, string FirstName, int Id);
 
     // Account deconstructor
     ~Account();

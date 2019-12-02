@@ -93,6 +93,7 @@ void AccountTree::clear() {
 
 }
 
+// Method for removing children in a binary tree
 void AccountTree::recursiveRemove(Node *Curr){
     if (Curr == nullptr){
         return;
