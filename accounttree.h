@@ -29,21 +29,30 @@ public:
     // check if tree is empty
     bool isEmpty() const;
 
+
+
 private:
     class Node {
     public:
         explicit Node(Account *Account)
                 : Account{Account}, Right{nullptr}, Left{nullptr} {};
+//        ~Node() {
+//            delete Account;
+//            delete Right;
+//            delete Left;
+//        }
         Account *Account;
         Node *Right;
         Node *Left;
     };
 
-    Node *Root;
+    Node *Root = nullptr;
 
     void recursiveRemove(Node *Curr);
 
     void display(Node *Root) const;
+
+    //void deleteTree(Node** Curr);
 };
 
 #endif // ASS5_ACCOUNTTREE_H

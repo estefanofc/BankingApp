@@ -114,13 +114,16 @@ void AccountTree::recursiveRemove(Node *Curr){
     recursiveRemove(Curr->Right);
     cout << "Deleting Account number: " << Curr->Account->getAccountNum() <<
     endl;
-    free(Curr);
+    delete Curr->Account;
+    delete Curr;
 }
 
 // check if tree is empty
 bool AccountTree::isEmpty() const {
-    if (Root == nullptr){
-        return true;
-    }
-  return false;
+  return Root == nullptr;
 }
+//
+//void AccountTree::deleteTree(Node **Curr) {
+//    recursiveRemove(*Curr);
+//    *Curr = nullptr;
+//}
