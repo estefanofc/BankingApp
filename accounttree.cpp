@@ -18,6 +18,8 @@ bool AccountTree::insert(Account *Account) {
     Node * Curr = Root;
     while (Curr != nullptr){
         if (Account->getAccountNum() == Curr->Account->getAccountNum()){
+            cout << "ERROR: Account " << Account->getAccountNum() <<
+            " is already open. Transacrtion refused." << endl;
             return false;
         }
         if (Account->getAccountNum() > Curr->Account->getAccountNum()){
