@@ -15,7 +15,7 @@ int main(int Argc, char *Argv[]) {
         Bank.processTransactions(FileName);
         Bank.displayAllBankBalances();
     }
-    cout << "Done" << endl;
+    //cout << "Done" << endl;
 
     return 0;
 }

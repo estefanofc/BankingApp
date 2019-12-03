@@ -92,7 +92,7 @@ bool Account::transfer(string Transaction, int From, int To, int Amount) {
     }
     if (withdraw("", Amount, From)) {
         deposit("", Amount, To);
-        History[From] += Transaction + '\n';
+        History[From] += Transaction;
         return true;
     }
     cout << "ERROR: not enough funds to make transfer" << endl;
@@ -101,10 +101,10 @@ bool Account::transfer(string Transaction, int From, int To, int Amount) {
 
 void Account::displayAllFunds() const {
     cout << "Displaying Transaction History for " << LastName << " " <<
-         FirstName << " by fund " << endl;
+         FirstName << " by fund." << endl;
     for (int I = 0; I < ACCOUNT_TYPES; I++) {
-        cout << "\t" << FUNDS[I] << ": $" << Funds[I] << endl;
-        cout << "\t" << History[I] << endl;
+        cout << FUNDS[I] << ": $" << Funds[I] << endl;
+        cout << "\t" << History[I];
     }
 }
 

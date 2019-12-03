@@ -82,7 +82,6 @@ void Bank::processTransactions(const string &FileName) {
         }
         Transactions.pop();
     }
-    cout << "done" << endl;
 }
 
 
@@ -91,7 +90,7 @@ void Bank::displayAllBankBalances() const {
         cout << "ERROR: No Accounts present" << endl;
         return;
     }
-    cout << " Final Balances" << endl;
+    cout << "\nProcessing Done. Final Balances." << endl;
     Accounts.display();
 
 }
@@ -102,7 +101,7 @@ void Bank::openNewAccount(string Process) {
     string LastName;
     int Id;
     ss >> LastName >> FirstName >> Id;
-    Account *NewAccount = new Account(FirstName, LastName, Id);
+    Account *NewAccount = new Account(LastName, FirstName, Id);
     if (!Accounts.insert(NewAccount)) {
         return;
     }
