@@ -5,22 +5,24 @@
 Account::Account(string LastName, string FirstName, int Id) :
         LastName{LastName}, FirstName{FirstName}, Id{Id} {
     for (int I = 0; I < ACCOUNT_TYPES; ++I) {
+        History[I] = "";
         Funds[I] = 0;
     }
 }
 
 Account::~Account() = default;
 
-bool Account::deposit(int Amount, int Fund) {
+bool Account::deposit(string Transaction, int Amount, int Fund) {
     if (Amount < 0) {
         cout << "ERROR: can't deposit negative amounts" << endl;
         return false;
     }
     Funds[Fund] += Amount;
+    History[Fund] += Transaction + '\n';
     return true;
 }
 
-bool Account::withdraw(int Amount, int Fund) {
+bool Account::withdraw(string Transaction, int Amount, int Fund) {
     int totalMoneyMarket = Funds[0] + Funds[1];
     switch (Fund) {
         case 0:
@@ -31,6 +33,7 @@ bool Account::withdraw(int Amount, int Fund) {
                 } else {
                     cout << "ERROR: not enough funds to make withdrawal"
                          << endl;
+                    
                     return false;
                 }
             } else {
@@ -59,30 +62,37 @@ bool Account::withdraw(int Amount, int Fund) {
             Funds[Fund] -= Amount;
             break;
     }
+    if (Transaction != "") {
+        History[Fund] += Transaction + '\n';
+    }
     return true;
 }
 
 //change parameter name
-bool Account::transfer(Account &Id, int Amount, int Fund1, int Fund2) {
+bool Account::transfer(string Transaction, Account &Id, int Amount, int Fund1,
+                       int Fund2) {
     if (Amount < 0) {
         cout << "ERROR: can't transfer negative amounts" << endl;
         return false;
     }
-    if (withdraw(Amount, Fund1)) {
-        Id.deposit(Amount, Fund2);
+    if (withdraw("", Amount, Fund1)) {
+        Id.deposit("", Amount, Fund2);
+        History[Fund1] += Transaction + '\n';
+        Id.History[Fund2] += Transaction + '\n';
         return true;
     }
     cout << "ERROR: not enough funds to make transfer" << endl;
     return false;
 }
 
-bool Account::transfer(int From, int To, int Amount) {
+bool Account::transfer(string Transaction, int From, int To, int Amount) {
     if (Amount < 0) {
         cout << "ERROR: can't transfer negative amounts" << endl;
         return false;
     }
-    if (withdraw(Amount, From)) {
-        deposit(Amount, To);
+    if (withdraw("", Amount, From)) {
+        deposit("", Amount, To);
+        History[From] += Transaction + '\n';
         return true;
     }
     cout << "ERROR: not enough funds to make transfer" << endl;
@@ -90,15 +100,20 @@ bool Account::transfer(int From, int To, int Amount) {
 }
 
 void Account::displayAllFunds() const {
-    cout << LastName << " " << FirstName
-         << " Account ID: " << Id << endl;
+    cout << "Displaying Transaction History for " << LastName << " " <<
+         FirstName << " by fund " << endl;
     for (int I = 0; I < ACCOUNT_TYPES; I++) {
-        displayFund(I);
+        cout << "\t" << FUNDS[I] << ": $" << Funds[I] << endl;
+        cout << "\t" << History[I] << endl;
     }
 }
 
 void Account::displayFund(int Fund) const {
-    cout << FUNDS[Fund] << ": $" << Funds[Fund] << endl;
+    cout << "Displaying Transaction History for " << LastName << " " <<
+         FirstName << "'s " << FUNDS[Fund] << ": $" << Funds[Fund] <<
+         endl;
+    cout << "\t" << History[Fund] << endl;
+
 }
 
 int Account::getAccountNum() const {

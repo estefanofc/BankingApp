@@ -16,12 +16,6 @@ int main(int Argc, char *Argv[]) {
         Bank.displayAllBankBalances();
     }
     cout << "Done" << endl;
-//    AccountTree tree;
-//    for (int i = 0; i < 15; ++i) {
-//        Account* hi = new Account("hola", "dd", i);
-//        tree.insert(hi);
-//    }
-//     tree.display();
 
     return 0;
 }

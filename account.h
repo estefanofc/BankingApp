@@ -30,19 +30,19 @@ public:
     ~Account();
 
     // boolean deposit function, returns true if account exists, false otherwise
-    bool deposit(int Amount, int Fund);
+    bool deposit(string Transaction, int Amount, int Fund);
 
     // boolean withdraw function. Checks account index type for available
     // funds, if fund is bond account, and does not have have sufficient funds
     // checks opposite bond account (if 0 then 1, if 1 then 0)
-    bool withdraw(int Amount, int Fund);
+    bool withdraw(string Transaction, int Amount, int Fund);
 
     // first account object calls second object to transfer to in argument,
     // calls withdraw and deposit methods
-    bool transfer(Account &Id, int Amount, int Fund1, int Fund2);
+    bool transfer(string Transaction, Account &Id, int Amount, int Fund1, int Fund2);
 
     // overloaded transfer method for transfers in same account
-    bool transfer(int From, int To, int Amount);
+    bool transfer(string Transaction, int From, int To, int Amount);
 
     // displays all funds from all sub-accounts related to main account
     void displayAllFunds() const;
