@@ -1,4 +1,4 @@
-// Created by Estefano Felipe and Jonathan Young on 11-29-19
+// Created by Estefano Felipa and Jonathan Young on 11-29-19
 #ifndef ASS5_ACCOUNTTREE_H
 #define ASS5_ACCOUNTTREE_H
 
@@ -36,11 +36,7 @@ private:
     public:
         explicit Node(Account *Account)
                 : Account{Account}, Right{nullptr}, Left{nullptr} {};
-//        ~Node() {
-//            delete Account;
-//            delete Right;
-//            delete Left;
-//        }
+
         Account *Account;
         Node *Right;
         Node *Left;
@@ -52,7 +48,6 @@ private:
 
     void display(Node *Root) const;
 
-    //void deleteTree(Node** Curr);
 };
 
 #endif // ASS5_ACCOUNTTREE_H

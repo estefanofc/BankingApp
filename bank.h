@@ -1,4 +1,4 @@
-// Created by Estefano Felipe and Jonathan Young on 11-29-19
+// Created by Estefano Felipa and Jonathan Young on 11-29-19
 #ifndef ASS5_BANK_H
 #define ASS5_BANK_H
 
@@ -16,6 +16,18 @@ public:
   void processTransactions(const string &FileName);
 
   void displayAllBankBalances() const;
+
+  void openNewAccount();
+
+  void withdrawlFromAccount();
+
+  void transferFunds();
+
+  void depositFunds();
+
+  void accountHistory() const;
+
+  void transactionOperation(const char Transaction);
 
 private:
   AccountTree Accounts;

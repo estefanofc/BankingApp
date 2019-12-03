@@ -87,22 +87,6 @@ void AccountTree::clear() {
         delete Root;
     }
 
-//    while (!isEmpty()){
-//        while (Curr->Right != nullptr || Curr->Left != nullptr){
-//            if (Curr->Left != nullptr && Curr->Right != nullptr){
-//                Temp = Curr;
-//            }
-//            if (Curr->Left != nullptr){
-//                Curr = Curr->Left;
-//            }
-//            else if (Curr->Right != nullptr) {
-//                Curr = Curr->Right;
-//            }
-//        }
-//        Temp = Curr;
-//        Curr = Curr->
-//    }
-
 }
 
 // Method for removing children in a binary tree
@@ -122,8 +106,3 @@ void AccountTree::recursiveRemove(Node *Curr){
 bool AccountTree::isEmpty() const {
   return Root == nullptr;
 }
-//
-//void AccountTree::deleteTree(Node **Curr) {
-//    recursiveRemove(*Curr);
-//    *Curr = nullptr;
-//}
