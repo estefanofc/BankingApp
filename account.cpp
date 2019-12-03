@@ -62,6 +62,7 @@ bool Account::withdraw(int Amount, int Fund) {
     return true;
 }
 
+//change parameter name
 bool Account::transfer(Account &Id, int Amount, int Fund1, int Fund2) {
     if (Amount < 0) {
         cout << "ERROR: can't transfer negative amounts" << endl;

@@ -17,21 +17,21 @@ public:
 
   void displayAllBankBalances() const;
 
-  void openNewAccount();
+  void openNewAccount(string Process);
 
-  void withdrawlFromAccount();
+  void withdrawFromAccount(string Process);
 
-  void transferFunds();
+  void transferFunds(string Process);
 
-  void depositFunds();
+  void depositFunds(string Process);
 
-  void accountHistory() const;
+  void accountHistory(string Process) const;
 
   void transactionOperation(const char Transaction);
 
 private:
   AccountTree Accounts;
-  queue<string> queue;
+  queue<string> Transactions;
 
 };
 #endif // ASS5_BANK_H
