@@ -18,7 +18,7 @@ bool Account::deposit(string Transaction, int Amount, int Fund) {
         return false;
     }
     Funds[Fund] += Amount;
-    History[Fund] += Transaction + '\n';
+    History[Fund] += "\t\t" + Transaction + '\n';
     return true;
 }
 
@@ -33,7 +33,9 @@ bool Account::withdraw(string Transaction, int Amount, int Fund) {
                 } else {
                     cout << "ERROR: not enough funds to make withdrawal"
                          << endl;
-                    
+                    if (Transaction != "") {
+                        History[0] += "\t\t" + Transaction + " (Failed)" + '\n';
+                    }
                     return false;
                 }
             } else {
@@ -48,6 +50,9 @@ bool Account::withdraw(string Transaction, int Amount, int Fund) {
                 } else {
                     cout << "ERROR: not enough funds to make withdrawal"
                          << endl;
+                    if (Transaction != "") {
+                        History[1] += "\t\t" + Transaction + " (Failed)" + '\n';
+                    }
                     return false;
                 }
             } else {
@@ -57,13 +62,16 @@ bool Account::withdraw(string Transaction, int Amount, int Fund) {
         default:
             if (Amount > Funds[Fund]) {
                 cout << "ERROR: not enough funds to make withdrawal" << endl;
+                if (Transaction != "") {
+                    History[Fund] += "\t\t" + Transaction + " (Failed)" + '\n';
+                }
                 return false;
             }
             Funds[Fund] -= Amount;
             break;
     }
     if (Transaction != "") {
-        History[Fund] += Transaction + '\n';
+        History[Fund] += "\t\t" + Transaction + '\n';
     }
     return true;
 }
@@ -76,9 +84,10 @@ bool Account::transfer(string Transaction, Account &Id, int Amount, int Fund1,
         return false;
     }
     if (withdraw("", Amount, Fund1)) {
-        Id.deposit("", Amount, Fund2);
-        History[Fund1] += Transaction + '\n';
-        Id.History[Fund2] += Transaction + '\n';
+        Id.deposit("D " + to_string(Id.getAccountNum()) + to_string(Fund2) +
+                   " " + to_string(Amount), Amount, Fund2);
+        History[Fund1] += "\t\t" + Transaction + '\n';
+        Id.History[Fund2] += "\t\t" + Transaction + '\n';
         return true;
     }
     cout << "ERROR: not enough funds to make transfer" << endl;
@@ -91,11 +100,11 @@ bool Account::transfer(string Transaction, int From, int To, int Amount) {
         return false;
     }
     if (withdraw("", Amount, From)) {
-        deposit("", Amount, To);
-        History[From] += Transaction;
+        deposit("D " + to_string(Id) + to_string(To) +
+                " " + to_string(Amount), Amount, To);
+        History[From] += '\t' + Transaction + '\n';
         return true;
     }
-    cout << "ERROR: not enough funds to make transfer" << endl;
     return false;
 }
 
@@ -104,7 +113,7 @@ void Account::displayAllFunds() const {
          FirstName << " by fund." << endl;
     for (int I = 0; I < ACCOUNT_TYPES; I++) {
         cout << FUNDS[I] << ": $" << Funds[I] << endl;
-        cout << "\t" << History[I];
+        cout << History[I];
     }
 }
 
@@ -112,7 +121,7 @@ void Account::displayFund(int Fund) const {
     cout << "Displaying Transaction History for " << LastName << " " <<
          FirstName << "'s " << FUNDS[Fund] << ": $" << Funds[Fund] <<
          endl;
-    cout << "\t" << History[Fund] << endl;
+    cout << History[Fund];
 
 }
 
@@ -133,7 +142,7 @@ ostream &operator<<(ostream &Os, const Account &Account) {
     Os << Account.getLastName() << " " << Account.getFirstName()
        << " Account ID: " << Account.getAccountNum() << endl;
     for (int I = 0; I < ACCOUNT_TYPES; I++) {
-        Os << "\t" << FUNDS[I] << ": $" << Account.Funds[I] << endl;
+        Os << "\t\t" << FUNDS[I] << ": $" << Account.Funds[I] << endl;
     }
     return Os;
 }
