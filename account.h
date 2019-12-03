@@ -20,7 +20,9 @@ const string FUNDS[10] = {
         "Value Stock Index"
 };
 
+// class to create account objects
 class Account {
+    // ostream overloaded operator for specified output for accounts
     friend ostream &operator<<(ostream &Os, const Account &Account);
 
 public:

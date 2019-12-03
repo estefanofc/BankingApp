@@ -2,10 +2,13 @@
 #include <sstream>
 #include "bank.h"
 
+// default constructor
 Bank::Bank() = default;
 
+// bank class deconstructor
 Bank::~Bank() = default;
 
+// reads files and builds line by line que for FIFO processing
 void Bank::processTransactions(const string &FileName) {
     ifstream File;
     File.open(FileName);
@@ -49,7 +52,7 @@ void Bank::processTransactions(const string &FileName) {
     }
 }
 
-
+// method that displays balances for all sub accounts for specified account
 void Bank::displayAllBankBalances() const {
     if (Accounts.isEmpty()) {
         cout << "ERROR: No Accounts present" << endl;
@@ -60,6 +63,7 @@ void Bank::displayAllBankBalances() const {
 
 }
 
+// receives string argument from signified process type to open new account
 void Bank::openNewAccount(string Process) {
     stringstream ss(Process);
     string FirstName;
@@ -73,6 +77,8 @@ void Bank::openNewAccount(string Process) {
 
 }
 
+// receives string argument from signified process type to withdraw from
+// account
 void Bank::withdrawFromAccount(string Process) {
     stringstream ss(Process);
     string First;
@@ -91,6 +97,8 @@ void Bank::withdrawFromAccount(string Process) {
     Account->withdraw("W " + Process, Amount, Fund);
 }
 
+// receives string argument from signified process type to transfer funds
+// between two accounts, parses between two accounts with substring
 void Bank::transferFunds(string Process) {
     stringstream ss(Process);
     string First;
@@ -125,6 +133,7 @@ void Bank::transferFunds(string Process) {
     }
 }
 
+// receives string argument from signified process type to deposit to account
 void Bank::depositFunds(string Process) {
     stringstream ss(Process);
     string First;
@@ -144,6 +153,7 @@ void Bank::depositFunds(string Process) {
 
 }
 
+// receives string argument from signified process type to call account history
 void Bank::accountHistory(string Process) const {
     stringstream ss(Process);
     string First;

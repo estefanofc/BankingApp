@@ -9,7 +9,8 @@ AccountTree::~AccountTree() {
     clear();
 }
 
-// Insert new account
+// Insert new account into Binary tree structure, returns false if account
+// exists
 bool AccountTree::insert(Account *Account) {
     if (isEmpty()) {
         Root = new Node(Account);
@@ -40,7 +41,7 @@ bool AccountTree::insert(Account *Account) {
     return false;
 }
 
-// Retrieve account
+// Retrieve account method
 // returns true if successful AND *Account points to account
 bool AccountTree::retrieve(const int &AccountNumber, Account *&Account) const {
     if (isEmpty()) {
@@ -67,6 +68,7 @@ void AccountTree::display() const {
     display(Root);
 }
 
+// recursive display method
 void AccountTree::display(Node *Curr) const {
     if (Curr != nullptr) {
         display(Curr->Left);
@@ -83,22 +85,18 @@ void AccountTree::clear() {
     }
     recursiveRemove(Root);
     if (Root->Right == nullptr && Root->Left == nullptr) {
-        cout << "Deleting Account number: " << Root->Account->getAccountID() <<
-             endl;
         delete Root;
     }
 
 }
 
-// Method for removing children in a binary tree
+// Method for recursively removing children in a binary tree
 void AccountTree::recursiveRemove(Node *Curr) {
     if (Curr == nullptr) {
         return;
     }
     recursiveRemove(Curr->Left);
     recursiveRemove(Curr->Right);
-    cout << "Deleting Account number: " << Curr->Account->getAccountID() <<
-         endl;
     delete Curr->Account;
     delete Curr;
 }

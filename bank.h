@@ -9,29 +9,42 @@
 
 using namespace std;
 
+// bank class
 class Bank {
 public:
-  Bank();
-  ~Bank();
-  void processTransactions(const string &FileName);
+    // default constructor
+    Bank();
 
-  void displayAllBankBalances() const;
+    // bank class deconstructor
+    ~Bank();
 
-  void openNewAccount(string Process);
+    // reads files and builds line by line que for FIFO processing
+    void processTransactions(const string &FileName);
 
-  void withdrawFromAccount(string Process);
+// method that displays balances for all sub accounts for specified account
+    void displayAllBankBalances() const;
 
-  void transferFunds(string Process);
+// receives string argument from signified process type to open new account
+    void openNewAccount(string Process);
 
-  void depositFunds(string Process);
+// receives string argument from signified process type to withdraw from
+// account
+    void withdrawFromAccount(string Process);
 
-  void accountHistory(string Process) const;
+// receives string argument from signified process type to transfer funds
+// between two accounts, parses between two accounts with substring
+    void transferFunds(string Process);
 
-  void transactionOperation(const char Transaction);
+// receives string argument from signified process type to deposit to account
+    void depositFunds(string Process);
+
+// receives string argument from signified process type to call account history
+    void accountHistory(string Process) const;
 
 private:
-  AccountTree Accounts;
-  queue<string> Transactions;
+    AccountTree Accounts;
+    queue<string> Transactions;
 
 };
+
 #endif // ASS5_BANK_H

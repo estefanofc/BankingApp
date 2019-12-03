@@ -5,6 +5,7 @@
 #include "account.h"
 #include <iostream>
 
+// Class to manage accounts into a Binary tree
 class AccountTree {
 public:
     // Create BST
@@ -30,13 +31,13 @@ public:
     bool isEmpty() const;
 
 
-
 private:
+    // Node class to create node Binary tree objects
     class Node {
     public:
+        // explicit constructor for Node objects
         explicit Node(Account *Account)
                 : Account{Account}, Right{nullptr}, Left{nullptr} {};
-
         Account *Account;
         Node *Right;
         Node *Left;
@@ -44,8 +45,10 @@ private:
 
     Node *Root = nullptr;
 
+    // Method for recursively removing children in a binary tree
     void recursiveRemove(Node *Curr);
 
+    // recursive display method
     void display(Node *Root) const;
 
 };
