@@ -37,6 +37,7 @@ bool AccountTree::insert(Account *Account) {
             Curr = Curr->Left;
         }
     }
+    return false;
 }
 
 // Retrieve account

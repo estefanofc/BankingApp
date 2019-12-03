@@ -26,7 +26,7 @@ class Account {
 public:
 
     // Account constructor, all sub account funds initialized to 0 balance
-    Account(string LastName, string FirstName, int Id);
+    Account(string LastName, string FirstName, int AccountID);
 
     // Account destructor
     ~Account();
@@ -64,9 +64,9 @@ public:
 
 
 private:
-    int AccountID;
     string LastName;
     string FirstName;
+    int AccountID;
     int Funds[ACCOUNT_TYPES];
     string History[ACCOUNT_TYPES];
 };
