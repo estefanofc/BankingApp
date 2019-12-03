@@ -19,8 +19,10 @@ const string FUNDS[10] = {
         "Value Fund",
         "Value Stock Index"
 };
+
 class Account {
-    friend ostream& operator<<(ostream& Os, const Account &Account);
+    friend ostream &operator<<(ostream &Os, const Account &Account);
+
 public:
 
     // Account constructor, all sub account funds initialized to 0 balance
@@ -39,7 +41,8 @@ public:
 
     // first account object calls second object to transfer to in argument,
     // calls withdraw and deposit methods
-    bool transfer(string Transaction, Account &Id, int Amount, int Fund1, int Fund2);
+    bool
+    transfer(string Transaction, Account &Id, int Amount, int Fund1, int Fund2);
 
     // overloaded transfer method for transfers in same account
     bool transfer(string Transaction, int From, int To, int Amount);
@@ -51,7 +54,7 @@ public:
     void displayFund(int Fund) const;
 
     // helper method to retrieve account number
-    int getAccountNum() const;
+    int getAccountID() const;
 
     // helper method to retrieve account holders last name
     string getLastName() const;
@@ -60,9 +63,8 @@ public:
     string getFirstName() const;
 
 
-
 private:
-    int Id;
+    int AccountID;
     string LastName;
     string FirstName;
     int Funds[ACCOUNT_TYPES];

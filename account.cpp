@@ -2,8 +2,8 @@
 #include "account.h"
 #include <iostream>
 
-Account::Account(string LastName, string FirstName, int Id) :
-        LastName{LastName}, FirstName{FirstName}, Id{Id} {
+Account::Account(string LastName, string FirstName, int AccountID) :
+        LastName{LastName}, FirstName{FirstName}, AccountID{AccountID} {
     for (int I = 0; I < ACCOUNT_TYPES; ++I) {
         History[I] = "";
         Funds[I] = 0;
@@ -31,8 +31,6 @@ bool Account::withdraw(string Transaction, int Amount, int Fund) {
                     Funds[1] -= Amount - Funds[0];
                     Funds[0] = 0;
                 } else {
-                    cout << "ERROR: not enough funds to make withdrawal"
-                         << endl;
                     if (Transaction != "") {
                         History[0] += "\t\t" + Transaction + " (Failed)" + '\n';
                     }
@@ -48,8 +46,6 @@ bool Account::withdraw(string Transaction, int Amount, int Fund) {
                     Funds[0] -= Amount - Funds[1];
                     Funds[1] = 0;
                 } else {
-                    cout << "ERROR: not enough funds to make withdrawal"
-                         << endl;
                     if (Transaction != "") {
                         History[1] += "\t\t" + Transaction + " (Failed)" + '\n';
                     }
@@ -61,7 +57,6 @@ bool Account::withdraw(string Transaction, int Amount, int Fund) {
             break;
         default:
             if (Amount > Funds[Fund]) {
-                cout << "ERROR: not enough funds to make withdrawal" << endl;
                 if (Transaction != "") {
                     History[Fund] += "\t\t" + Transaction + " (Failed)" + '\n';
                 }
@@ -84,7 +79,7 @@ bool Account::transfer(string Transaction, Account &Id, int Amount, int Fund1,
         return false;
     }
     if (withdraw("", Amount, Fund1)) {
-        Id.deposit("D " + to_string(Id.getAccountNum()) + to_string(Fund2) +
+        Id.deposit("D " + to_string(Id.getAccountID()) + to_string(Fund2) +
                    " " + to_string(Amount), Amount, Fund2);
         History[Fund1] += "\t\t" + Transaction + '\n';
         Id.History[Fund2] += "\t\t" + Transaction + '\n';
@@ -100,9 +95,9 @@ bool Account::transfer(string Transaction, int From, int To, int Amount) {
         return false;
     }
     if (withdraw("", Amount, From)) {
-        deposit("D " + to_string(Id) + to_string(To) +
+        deposit("D " + to_string(AccountID) + to_string(To) +
                 " " + to_string(Amount), Amount, To);
-        History[From] += '\t' + Transaction + '\n';
+        History[From] += "\t\t" + Transaction + '\n';
         return true;
     }
     return false;
@@ -125,8 +120,8 @@ void Account::displayFund(int Fund) const {
 
 }
 
-int Account::getAccountNum() const {
-    return Id;
+int Account::getAccountID() const {
+    return AccountID;
 }
 
 
@@ -140,7 +135,7 @@ string Account::getFirstName() const {
 
 ostream &operator<<(ostream &Os, const Account &Account) {
     Os << Account.getLastName() << " " << Account.getFirstName()
-       << " Account ID: " << Account.getAccountNum() << endl;
+       << " Account ID: " << Account.getAccountID() << endl;
     for (int I = 0; I < ACCOUNT_TYPES; I++) {
         Os << "\t\t" << FUNDS[I] << ": $" << Account.Funds[I] << endl;
     }

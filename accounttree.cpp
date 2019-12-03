@@ -17,19 +17,19 @@ bool AccountTree::insert(Account *Account) {
     }
     Node *Curr = Root;
     while (Curr != nullptr) {
-        if (Account->getAccountNum() == Curr->Account->getAccountNum()) {
-            cout << "ERROR: Account " << Account->getAccountNum() <<
+        if (Account->getAccountID() == Curr->Account->getAccountID()) {
+            cout << "ERROR: Account " << Account->getAccountID() <<
                  " is already open. Transaction refused." << endl;
             return false;
         }
-        if (Account->getAccountNum() > Curr->Account->getAccountNum()) {
+        if (Account->getAccountID() > Curr->Account->getAccountID()) {
             if (Curr->Right == nullptr) {
                 Curr->Right = new Node(Account);
                 return true;
             }
             Curr = Curr->Right;
         }
-        if (Account->getAccountNum() < Curr->Account->getAccountNum()) {
+        if (Account->getAccountID() < Curr->Account->getAccountID()) {
             if (Curr->Left == nullptr) {
                 Curr->Left = new Node(Account);
                 return true;
@@ -48,9 +48,9 @@ bool AccountTree::retrieve(const int &AccountNumber, Account *&Account) const {
     }
     Node *Curr = Root;
     while (Curr != nullptr) {
-        if (AccountNumber > Curr->Account->getAccountNum()) {
+        if (AccountNumber > Curr->Account->getAccountID()) {
             Curr = Curr->Right;
-        } else if (AccountNumber < Curr->Account->getAccountNum()) {
+        } else if (AccountNumber < Curr->Account->getAccountID()) {
             Curr = Curr->Left;
         } else {
             Account = Curr->Account;
@@ -82,7 +82,7 @@ void AccountTree::clear() {
     }
     recursiveRemove(Root);
     if (Root->Right == nullptr && Root->Left == nullptr) {
-        cout << "Deleting Account number: " << Root->Account->getAccountNum() <<
+        cout << "Deleting Account number: " << Root->Account->getAccountID() <<
              endl;
         delete Root;
     }
@@ -96,7 +96,7 @@ void AccountTree::recursiveRemove(Node *Curr) {
     }
     recursiveRemove(Curr->Left);
     recursiveRemove(Curr->Right);
-    cout << "Deleting Account number: " << Curr->Account->getAccountNum() <<
+    cout << "Deleting Account number: " << Curr->Account->getAccountID() <<
          endl;
     delete Curr->Account;
     delete Curr;
